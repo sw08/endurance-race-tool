@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="ert_for_host.GridArrangement"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Loaded="UserControl_Loaded"
+         >
+    <Grid Width="800" Height="450">
+        <Grid Height="20" Margin="60,0,60,430" HorizontalAlignment="Right" Width="680">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="separateClassCheck" Grid.Column="1" IsChecked="True" HorizontalAlignment="Right" VerticalAlignment="Center" Checked="SeparateClassCheck_Checked" Unchecked="SeparateClassCheck_Unchecked" >Separate by class</CheckBox>
+        </Grid>
+        <Grid Margin="60,20,60,410" Height="20" Width="680">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="6*" />
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="gt2Check" Grid.Column="0" IsChecked="True">GT2</CheckBox>
+            <CheckBox x:Name="gt3Check" Grid.Column="1" IsChecked="True">GT3</CheckBox>
+            <CheckBox x:Name="gt4Check" Grid.Column="2" IsChecked="True">GT4</CheckBox>
+            <CheckBox x:Name="gtcCheck" Grid.Column="3" IsChecked="True">GTC</CheckBox>
+            <CheckBox x:Name="tcxCheck" Grid.Column="4" IsChecked="True">TCX</CheckBox>
+            <CheckBox x:Name="hideSameClassCheck" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="True" Checked="HideSameClassCheck_Checked" Unchecked="HideSameClassCheck_Unchecked">Hide record with different car of same class</CheckBox>
+        </Grid>
+        <DataGrid VerticalAlignment="Top" x:Name="recordDataGrid" AutoGenerateColumns="False" Margin="60,45,60,0" Height="330" Width="680" FontSize="13" IsSynchronizedWithCurrentItem="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" RowEditEnding="RecordDataGrid_RowEditEnding" CanUserAddRows="False" CanUserResizeRows="False" CanUserDeleteRows="False" GridLinesVisibility="Horizontal" EnableRowVirtualization="False" HeadersVisibility="Column" BorderThickness="0,0,0,0" PreviewKeyDown="RecordDataGrid_PreviewKeyDown">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="SteamID" Binding="{Binding Path=SteamId, UpdateSourceTrigger=LostFocus}" Width="130" />
+                <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName, UpdateSourceTrigger=LostFocus}" Width="75" />
+                <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName, UpdateSourceTrigger=LostFocus}" Width="75" />
+                <DataGridTextColumn Header="Laptime" Binding="{Binding Path=LaptimeString, UpdateSourceTrigger=LostFocus}" Width="70"  />
+                <DataGridTextColumn x:Name="classSort" Header="Class" Binding="{Binding Path=ClassType}" Width="50" IsReadOnly="True" />
+                <DataGridComboBoxColumn x:Name="carSort" Header="Car" SelectedValueBinding="{Binding Path=Car, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" DisplayMemberPath="{Binding Path=Car}"  Width="280"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Height="30" Margin="60,400,60,20" Width="680">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="addBtn" Grid.Column="0" Content="Add" FontSize="14" FontWeight="Bold" Click="AddClick"/>
+            <Button x:Name="removeBtn" Grid.Column="2" Content="Remove" FontSize="14" FontWeight="Bold" Click="RemoveClick"/>
+            <Button x:Name="clearBtn" Grid.Column="4" Content="Clear" FontSize="14" FontWeight="Bold" Click="ClearClick"/>
+            <Button x:Name="importBtn" Grid.Column="6" Content="Import" FontSize="14" FontWeight="Bold" Click="ImportClick" />
+            <Button x:Name="exportBtn" Grid.Column="8" Content="Export" FontSize="14" FontWeight="Bold" Click="ExportClick"/>
+        </Grid>
+
+    </Grid>
+</UserControl>
